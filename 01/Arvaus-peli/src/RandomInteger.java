@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner; // import the Scanner class
 
@@ -6,29 +7,42 @@ public class RandomInteger {
 
         public static void main(String[] args) {
             Random r = new Random();
-            int value = r.nextInt(100) +1;
+            int value = r.nextInt(100) + 1;
 
 
-            for (int i = 1; i < value; i++) {
-
-                Scanner scanner = new Scanner(System.in);
-                // Enter username and press Enter
+            Scanner scanner = null;
+            for (int i = 1; i <= 7; i++) {
+                scanner = new Scanner(System.in);
                 System.out.println("Arvaa joku numero 1 - 100\n");
-                int userInput = scanner.nextInt();
-                if (userInput == value) {
-                    System.out.println("Oeikein Arvasit");
+                try {
+                    int userInput = scanner.nextInt();
+                    if (userInput < 1 || userInput > 100) {
+                        System.out.println("Laitta numero 0-100 kuten esimerkissa");
+                        i--;
+                        continue;
+
+                    }
+                    if (userInput == value) {
+                        System.out.println("Oeikein Arvasit");
+                        break;
+                    } else if (userInput < value) {
+                        System.out.println("Liian pieni luku.");
+
+                    } else if (userInput > value) {
+                        System.out.println("Liian iso luku.");
+                    }
+                    if (i == 7) {
+                        System.out.println(String.format("sinä arvasit %d kerta väärin peli päätyy.", i));
+                    }
                 }
-                if (userInput > value) {
-                    System.out.println("Liian iso luku.");
+                catch (InputMismatchException e) {
+                    System.out.println("Laitta numerot muodoss 1-100");
+                    scanner.next();
+                    i--;
+
                 }
-                if (userInput < value) {
-                    System.out.println("Liian pieni luku.");
-                }
+            } scanner.close();
 
-
-
-
-            }
         }
 }
 
