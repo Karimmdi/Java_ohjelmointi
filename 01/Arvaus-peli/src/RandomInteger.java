@@ -13,17 +13,17 @@ public class RandomInteger {
             Scanner scanner = null;
             for (int i = 1; i <= 7; i++) {
                 scanner = new Scanner(System.in);
-                System.out.println("Arvaa joku numero 1 - 100\n");
+                System.out.println("Arvaa jokin numero 1 - 100 välillä");
                 try {
                     int userInput = scanner.nextInt();
                     if (userInput < 1 || userInput > 100) {
-                        System.out.println("Laitta numero 0-100 kuten esimerkissa");
+                        System.out.println("Väärä syöte, laitta numero 0-100 kuten esimerkissa");
                         i--;
                         continue;
 
                     }
                     if (userInput == value) {
-                        System.out.println("Oeikein Arvasit");
+                        System.out.println(" Voitto!!! Oikein Arvasit!");
                         break;
                     } else if (userInput < value) {
                         System.out.println("Liian pieni luku.");
@@ -36,7 +36,7 @@ public class RandomInteger {
                     }
                 }
                 catch (InputMismatchException e) {
-                    System.out.println("Laitta numerot muodoss 1-100");
+                    System.out.println(" Väärä syöte,  laitta numerot muodoss 1-100");
                     scanner.next();
                     i--;
 
